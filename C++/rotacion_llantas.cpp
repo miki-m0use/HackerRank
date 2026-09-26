@@ -14,60 +14,28 @@ using namespace std;
 
 int calcularFase(string pInicial, string pActual) {
 
-    int inicio = 0;
-    int final = 0;
-
-    //para encontar la fase inicial
-    if(pInicial == "ABCD"){
-        inicio= 1;
-    }else if(pInicial == "DCAB"){
-        inicio= 2;
-    }else if(pInicial == "BADC"){
-        inicio= 3;
-    }else if(pInicial == "CDBA"){
-        inicio= 4;
-
-    }else{
-        return -1;
-    }
-
-
-    //para encontar la fase actual(final)
-
-    if(pActual == "ABCD"){
-        final= 1;
-    }else if(pActual == "DCAB"){
-        final= 2;
-    }else if(pActual == "BADC"){
-        final= 3;
-    }else if(pActual == "CDBA"){
-        final= 4;
-    }else{
-        return -1;
-    }
-
-    if(inicio == final){
-        return 1;
-    }else if(final > inicio){
-        return (final - inicio) + 1;
-    }else{
-        return (4 - inicio) + final + 1;
-    }
-
-
+    //soy awenao, pero gracias a mi amigo edicson. Pusheo nuevamente
+    string f1 = pInicial;
+    string f2 = {pInicial[3], pInicial[2], pInicial[0], pInicial[1]};
+    string f3 = {f2[3], f2[2], f2[0], f2[1]};
+    string f4 = {f3[3], f3[2], f3[0], f3[1]};
+    
+    if (pActual == f1) {return 1;}
+    else if (pActual == f2) {return 2;}
+    else if (pActual == f3) {return 3;}
+    else if (pActual == f4) {return 4;}
+    
+    return -1;
 }
 
 int main(){
-
     string inicial;
     getline(cin, inicial);
-
     string actual;
     getline(cin, actual);
-
+    
     int resFase = calcularFase(inicial, actual);
 
     cout << resFase << "\n";
-
     return 0;
 }
